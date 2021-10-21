@@ -8,23 +8,56 @@
 
 .chat_record_page .word_item {
   position: relative;
+  // display: flex;
+  margin: 10PX 0;
 }
 
 .chat_record_page .word_item .words {
   font-size: 15PX;
-  width: -moz-fit-content;
   width: fit-content;
   max-width: 12em;
   padding: 0 5PX;
-  margin: 13PX 0 13PX 37PX;
+  margin: 0 0 0 43PX;
   white-space: pre-wrap;
   border: 2PX #333333 solid;
   border-radius: 6PX;
 }
 
-.chat_record_page .word_item img {
+.border_none {
+  border: none !important;
+}
+
+.chat_record_page .word_item .icon {
   position: absolute;
-  width: 40PX;
+  width: 29PX;
+  margin-left: 2PX;
+  top: -2PX;
+}
+
+.chat_record_page .word_item .icon_horn {
+  position: absolute;
+  width: 13PX;
+  margin-left: 34PX;
+  top: -4PX;
+}
+
+//右边对话框(聊天主视角角色的对话框)
+.chat_record_page .chat_box_right {
+  text-align: -webkit-right;
+}
+
+.chat_record_page .chat_box_right .words {
+  margin-right: 45PX;
+}
+
+.chat_record_page .chat_box_right .icon {
+  right: 2PX;
+  top: -1PX;
+}
+
+.chat_record_page .chat_box_right .icon_horn {
+  transform: rotateY(180deg);
+  right: 36PX;
   top: -2PX;
 }
 
