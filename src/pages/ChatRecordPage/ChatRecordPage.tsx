@@ -5,7 +5,7 @@ import words_obj from './words';
 import './ChatRecordPage.scss';
 
 interface chatRecords {
-  char: number;
+  char: string;
   words: string;
 }
 
@@ -15,27 +15,33 @@ const ChatRecordPage = (props: any) => {
 
   useEffect(() => {}, []);
 
+  //拆分台词, 做成{char:'',words:''}放到list中
+  //台词格式为: [角色id]#[台词]$
+  const split_chat_record = (words: string, records_list: chatRecords[]) => {
+    const split_words = words.split('$');
+    split_words.map(it => {
+      const [char, words] = it.split('#');
+      char &&
+        words &&
+        records_list.push({
+          char: char,
+          words: words,
+        });
+    });
+    return records_list;
+  };
   /*
   char: 0:♀-猫草, 1:♀-被盗当事人, 2:♂-爱凑热闹,说话比较幼稚, 3:♂-程序员,理性派,
    4:♂-东北大哥,曾被骗过,容易冲动, 5:偶尔出现的群友, 6:偶尔出现的群友
   */
-  const split_words_1 = words_obj.words_1.words.split('$');
-  const chatRecords_1: chatRecords[] = [];
-  split_words_1.map(it => {
-    const [char, words] = it.split('#');
-    char &&
-      words &&
-      chatRecords_1.push({
-        char: Number(char),
-        words: words,
-      });
-  });
+  const records_list_1: chatRecords[] = [];
+  const records_list_2: chatRecords[] = [];
+  split_chat_record(words_obj.words_1.words, records_list_1);
+  split_chat_record(words_obj.words_2.words, records_list_2);
 
   /*
   char: 0:♀-被盗当事人, 1:♀-土豪朋友
   */
-
-  const url = '../../resources/icons/a.png';
 
   /*
   获取头像
@@ -44,28 +50,28 @@ const ChatRecordPage = (props: any) => {
   const get_icon_src = (id: number | string) => {
     let icon_src: string = '';
     switch (id) {
-      case 0:
+      case 'a':
         icon_src = require('../../resources/icons/a.png').default;
         break;
-      case 1:
+      case 'b':
         icon_src = require('../../resources/icons/b.png').default;
         break;
-      case 2:
+      case 'c':
         icon_src = require('../../resources/icons/c.png').default;
         break;
-      case 3:
+      case 'd':
         icon_src = require('../../resources/icons/d.png').default;
         break;
-      case 4:
+      case 'e':
         icon_src = require('../../resources/icons/e.png').default;
         break;
-      case 5:
+      case 'f':
         icon_src = require('../../resources/icons/f.png').default;
         break;
-      case 6:
+      case 'g':
         icon_src = require('../../resources/icons/g.png').default;
         break;
-      case 7:
+      case 'h':
         icon_src = require('../../resources/icons/h.png').default;
         break;
       default:
@@ -74,21 +80,27 @@ const ChatRecordPage = (props: any) => {
     return icon_src;
   };
 
+  const get_chat_div = (list: chatRecords[], me_id: string) => {
+    return list.map(it => {
+      return it.char === 'date' ? (
+        <div className='chat_date border_none'>{it.words}</div>
+      ) : (
+        <div className={'word_item '.concat(it.char == me_id ? 'chat_box_right' : '').concat()}>
+          <img src={get_icon_src(it.char)} className='icon' />
+          {it.words[0] === '\t' || (
+            <img src={require('../../resources/icons/horn.png').default} className='icon_horn' />
+          )}
+          <div className={'words '.concat(it.words[0] === '\t' ? 'border_none' : '')}>{it.words}</div>
+        </div>
+      );
+    });
+  };
+
   return (
     <div className={'chat_record_page '.concat(props.className)}>
-      <div className='word_list'>
-        {chatRecords_1.map(it => {
-          return (
-            <div className={'word_item '.concat(it.char == words_obj.words_1.me_id ? 'chat_box_right' : '').concat()}>
-              <img src={get_icon_src(it.char)} className='icon' />
-              {it.words[0] === '\t' || (
-                <img src={require('../../resources/icons/horn.png').default} className='icon_horn' />
-              )}
-              <div className={'words '.concat(it.words[0] === '\t' ? 'border_none' : '')}>{it.words}</div>
-            </div>
-          );
-        })}
-      </div>
+      <div className='word_list'>{get_chat_div(records_list_1, words_obj.words_1.me_id)}</div>
+      <div>Part -- 2</div>
+      <div className='word_list'>{get_chat_div(records_list_2, words_obj.words_2.me_id)}</div>
     </div>
   );
 };

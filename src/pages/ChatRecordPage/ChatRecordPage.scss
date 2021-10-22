@@ -2,14 +2,13 @@
 
 .chat_record_page .word_list {
   font-family: LittleMatch;
-  //border: 3PX #333333 solid;
-  //width: 1080PX;
+  width: 290PX;
 }
 
 .chat_record_page .word_item {
   position: relative;
   // display: flex;
-  margin: 10PX 0;
+  margin: 15PX 0;
 }
 
 .chat_record_page .word_item .words {
@@ -47,6 +46,7 @@
 }
 
 .chat_record_page .chat_box_right .words {
+  text-align: justify;
   margin-right: 45PX;
 }
 
@@ -60,6 +60,18 @@
   right: 36PX;
   top: -2PX;
 }
+
+//聊天日期
+.chat_record_page .chat_date {
+  white-space: pre-wrap;
+  text-align: center;
+  margin: 15PX;
+  color: #b0b0b0;
+  font-size: 15PX;
+}
+
+
+
 
 @font-face {
   font-family: 'LittleMatch';
