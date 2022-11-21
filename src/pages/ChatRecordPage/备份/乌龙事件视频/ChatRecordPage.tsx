@@ -31,9 +31,8 @@ const ChatRecordPage = (props: any) => {
     return records_list;
   };
   /*
-  char: 0:♀-a女主, 1:♀-b美女制作, 2:♂-制作c话多经常在线上, 3:♂-制作d, 4:♂-作画e, 
-  ♀-5:作画f少出现, 6:♂-CGg, ♀-7:背景h软妹, 8:♂-摄影i, 9:♂-演出j说话比较正经, ♀-10:制作k, 
-  11:♂-作画m
+  char: 0:♀-猫草, 1:♀-被盗当事人, 2:♂-爱凑热闹,说话比较幼稚, 3:♂-程序员,理性派,
+   4:♂-东北大哥,曾被骗过,容易冲动, 5:偶尔出现的群友, 6:偶尔出现的群友
   */
   const records_list_1: chatRecords[] = [];
   const records_list_2: chatRecords[] = [];
@@ -41,7 +40,7 @@ const ChatRecordPage = (props: any) => {
   split_chat_record(words_obj.words_2.words, records_list_2);
 
   /*
-  char: 0:♀-a女主, 1:♀-b美女制作
+  char: 0:♀-被盗当事人, 1:♀-土豪朋友
   */
 
   /*
@@ -50,9 +49,6 @@ const ChatRecordPage = (props: any) => {
    */
   const get_icon_src = (id: number | string) => {
     let icon_src: string = '';
-    /*//require好像不能用变量作为路径,只能写死?
-    let icon_name = '../../resources/icons/' + id + '.png';
-    icon_src = require(icon_name).default;*/
     switch (id) {
       case 'a':
         icon_src = require('../../resources/icons/a.png').default;
@@ -77,18 +73,6 @@ const ChatRecordPage = (props: any) => {
         break;
       case 'h':
         icon_src = require('../../resources/icons/h.png').default;
-        break;
-      case 'i':
-        icon_src = require('../../resources/icons/i.png').default;
-        break;
-      case 'j':
-        icon_src = require('../../resources/icons/j.png').default;
-        break;
-      case 'k':
-        icon_src = require('../../resources/icons/k.png').default;
-        break;
-      case 'm':
-        icon_src = require('../../resources/icons/m.png').default;
         break;
       default:
         break;
