@@ -96,17 +96,43 @@ const ChatRecordPage = (props: any) => {
     return icon_src;
   };
 
+  //获取名字
+  const getName = (id: number | string) => {
+    const id_names = [
+      { id: 'a', name: '' },
+      { id: 'b', name: '' },
+      { id: 'c', name: '制作c' },
+      { id: 'd', name: '制作d' },
+      { id: 'e', name: '作画e' },
+      { id: 'f', name: '作画f' },
+      { id: 'g', name: 'CG g' },
+      { id: 'h', name: '背景h' },
+      { id: 'i', name: '摄影i' },
+      { id: 'j', name: '演出j' },
+      { id: 'k', name: '制作k' },
+      { id: 'm', name: '作画m' },
+    ];
+    for (var i in id_names) {
+      if (id_names[i].id == id) {
+        return id_names[i].name;
+      }
+    }
+  };
+
   const get_chat_div = (list: chatRecords[], me_id: string) => {
     return list.map(it => {
       return it.char === 'date' ? (
         <div className='chat_date border_none'>{it.words}</div>
       ) : (
-        <div className={'word_item '.concat(it.char == me_id ? 'chat_box_right' : '').concat()}>
-          <img src={get_icon_src(it.char)} className='icon' />
-          {it.words[0] === '\t' || (
-            <img src={require('../../resources/icons/horn.png').default} className='icon_horn' />
-          )}
-          <div className={'words '.concat(it.words[0] === '\t' ? 'border_none' : '')}>{it.words}</div>
+        <div>
+          {it.char == me_id || <div className={'name'}>{getName(it.char)}</div>}
+          <div className={'word_item '.concat(it.char == me_id ? 'chat_box_right' : '').concat()}>
+            <img src={get_icon_src(it.char)} className='icon' />
+            {it.words[0] === '\t' || (
+              <img src={require('../../resources/icons/horn.png').default} className='icon_horn' />
+            )}
+            <div className={'words '.concat(it.words[0] === '\t' ? 'border_none' : '')}>{it.words}</div>
+          </div>
         </div>
       );
     });
@@ -116,7 +142,7 @@ const ChatRecordPage = (props: any) => {
     <div className={'chat_record_page '.concat(props.className)}>
       <div className='word_list'>{get_chat_div(records_list_1, words_obj.words_1.me_id)}</div>
       <div>Part -- 2</div>
-      <div className='word_list'>{get_chat_div(records_list_2, words_obj.words_2.me_id)}</div>
+      <div className='word_list japanese_words'>{get_chat_div(records_list_2, words_obj.words_2.me_id)}</div>
     </div>
   );
 };
