@@ -33,7 +33,7 @@ const ChatRecordPage = (props: any) => {
   /*
   char: 0:♀-a女主, 1:♀-b美女制作, 2:♂-制作c话多经常在线上, 3:♂-制作d, 4:♂-作画e, 
   ♀-5:作画f少出现, 6:♂-CGg, ♀-7:背景h软妹, 8:♂-摄影i, 9:♂-演出j说话比较正经, ♀-10:制作k, 
-  11:♂-作画m
+  11:♂-作画m,11:♂-作画n
   */
   const records_list_1: chatRecords[] = [];
   const records_list_2: chatRecords[] = [];
@@ -90,6 +90,9 @@ const ChatRecordPage = (props: any) => {
       case 'm':
         icon_src = require('../../resources/icons/m.png').default;
         break;
+      case 'n':
+        icon_src = require('../../resources/icons/n.png').default;
+        break;
       default:
         break;
     }
@@ -111,6 +114,7 @@ const ChatRecordPage = (props: any) => {
       { id: 'j', name: '演出j' },
       { id: 'k', name: '制作k' },
       { id: 'm', name: '作画m' },
+      { id: 'n', name: '作画n' },
     ];
     for (var i in id_names) {
       if (id_names[i].id == id) {
