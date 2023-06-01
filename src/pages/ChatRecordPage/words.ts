@@ -20,6 +20,9 @@ const words_obj = {
 words_obj.words_1.words =
   'c#震了吗$\
 e#震了$\
+f#震了$\
+d#又震了！$\
+g#这次好大$\
 d#我以为室友在抖腿$\
 j#地震了$\
 h#刚在路上没感觉$\
